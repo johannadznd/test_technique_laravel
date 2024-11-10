@@ -46,4 +46,16 @@ class ProfilService
             'status' => $profilDTO->status,
         ]);
     }
+
+
+
+    public function updateProfil(profilDto $profilDTO, Profil $profil)
+    {
+        // Mise à jour des autres champs
+        $profil->lastName = $profilDTO->lastName;
+        $profil->firstName = $profilDTO->firstName;
+        $profil->status = $profilDTO->status;
+
+        $profil->updateOrFail();
+    }
 }

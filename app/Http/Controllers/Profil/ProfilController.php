@@ -65,35 +65,65 @@ class ProfilController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProfilRequest $request, string $id)
     {
-        //
+        // On essaie de récupérer le profil avec find()
+        $profil = Profil::find($id);
+
+        // Si le profil n'existe pas, retourner un message d'erreur personnalisé
+        if (!$profil) {
+            return response()->json([
+                'message' => 'Aucun profil existant pour cet id.',
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        try {
+            // Récupérer les données validées depuis le DTO
+            $profilDTO = $request->toDTO();
+
+            // Gérer l'image si elle est présente dans la requête
+            if ($request->hasFile('image')) {
+                $imageName = $this->profilService->storeImage($request->file('image'));
+                $profil->image = $imageName; 
+            }
+
+            $this->profilService->updateProfil($profilDTO, $profil);
+
+            return response()->json([
+                'message' => 'Le profil a bien été modifié.',
+            ], Response::HTTP_OK);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Un problème est survenu lors de la modification du profil.',
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-     public function destroy(string $id)
-     {
-         //On essaie de récupérer le profil avec find()
-         $profil = Profil::find($id);
- 
-         // Si le profil n'existe pas, retourner un message d'erreur personnalisé
-         if (!$profil) {
-             return response()->json([
-                 'message' => 'Aucun profil existant pour cet id.',
-             ], Response::HTTP_NOT_FOUND);
-         }
- 
-         try {
-             $profil->delete();
-             return response()->json([
-                 'message' => 'Le profil a bien été supprimé.',
-             ], Response::HTTP_OK);
-         } catch (\Exception $e) {
-             return response()->json([
-                 'message' => 'Un problème est survenu lors de la suppression du profil.',
-             ], Response::HTTP_INTERNAL_SERVER_ERROR);
-         }
-     }
+    public function destroy(string $id)
+    {
+        //On essaie de récupérer le profil avec find()
+        $profil = Profil::find($id);
+
+        // Si le profil n'existe pas, retourner un message d'erreur personnalisé
+        if (!$profil) {
+            return response()->json([
+                'message' => 'Aucun profil existant pour cet id.',
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        try {
+            $profil->deleteOrFail();
+            return response()->json([
+                'message' => 'Le profil a bien été supprimé.',
+            ], Response::HTTP_OK);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Un problème est survenu lors de la suppression du profil.',
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
 }

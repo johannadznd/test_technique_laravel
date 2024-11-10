@@ -71,7 +71,7 @@ class ProfilRequest extends FormRequest
         return new profilDto(
             lastName: $validatedData['lastName'],
             firstName: $validatedData['firstName'],
-            image: $validatedData['image'],
+            image: $validatedData['image'] ?? null,
             status: $validatedData['status']
         );
     }
