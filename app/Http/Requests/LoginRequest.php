@@ -20,6 +20,14 @@ class LoginRequest extends FormRequest
         ];
     }
 
+    public function messages()
+    {
+        return [
+            'email.required' => 'Le mail est requis',
+            'password.required' => 'Le mot de passe est requis',
+        ];
+    }
+
     public function toDTO(): LoginDTO
     {
         // Validation des données

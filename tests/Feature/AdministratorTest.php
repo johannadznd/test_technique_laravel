@@ -45,9 +45,10 @@ class AdministratorTest extends TestCase
         ]);
 
         // Vérification de la réponse
-        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
-        $response->assertJsonValidationErrors(['email']);
-    }
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+        $response->assertJson([
+            'message' => 'Les identifiants sont incorrects'
+        ]);    }
 
     public function test_login_requires_email_and_password()
     {
