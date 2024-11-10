@@ -42,7 +42,7 @@ return [
         ],
 
         'administrator' => [
-            'driver' => 'token',
+            'driver' => 'sanctum',
             'provider' => 'administrators',
             'hash' => false,
         ],
