@@ -9,7 +9,7 @@ use Illuminate\Http\Response;
 use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 
-class ProfilControllerTest extends TestCase
+class CreateProfilTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -35,13 +35,6 @@ class ProfilControllerTest extends TestCase
     {
         //On test le cas où on n'est pas authentifié
         $response = $this->postJson('/api/profil');
-        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
-    }
-
-    public function test_delete_profil_requires_authentication()
-    {
-        //On test le cas où on n'est pas authentifié
-        $response = $this->deleteJson('/api/profil/1');
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 
@@ -154,45 +147,5 @@ class ProfilControllerTest extends TestCase
 
         // On vérifie que l'erreur est renvoyée pour le statut
         $response->assertJsonValidationErrors(['status']);
-    }
-
-    public function testDeleteProfil()
-    {
-        // On récupère le token
-        $token = $this->authenticate();
-
-        // On crée un profil fictif pour tester la suppression
-        $profil = Profil::factory()->create();
-
-        // On appelle la méthode de suppression
-        // On tente de supprimer un profil inexistant
-        $response = $this->deleteJson('api/profil/' . $profil->id, [], [
-            'Authorization' => 'Bearer ' . $token,
-        ]);
-        // On vérifie que le profil a bien été supprimé
-        $this->assertDatabaseMissing('profils', ['id' => $profil->id]);
-
-        // On vérifie la réponse HTTP
-        $response->assertStatus(Response::HTTP_OK);
-        $response->assertJson([
-            'message' => 'Le profil a bien été supprimé.',
-        ]);
-    }
-
-    public function testDeleteProfilNotFound()
-    {
-
-        // On récupère le token
-        $token = $this->authenticate();
-
-        // On tente de supprimer un profil inexistant
-        $response = $this->deleteJson('api/profil/999', [], [
-            'Authorization' => 'Bearer ' . $token,
-        ]);
-        // On vérifie la réponse pour un profil non trouvé
-        $response->assertStatus(Response::HTTP_NOT_FOUND);
-        $response->assertJson([
-            'message' => 'Aucun profil existant pour cet id.',
-        ]);
     }
 }
