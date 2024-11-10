@@ -31,7 +31,7 @@ class LoginRequest extends FormRequest
     public function toDTO(): LoginDTO
     {
         // Validation des données
-        $validatedData = $this->validate($this->rules());
+        $validatedData = $this->validated();
 
         // Retourner un DTO avec les données validées
         return new LoginDTO(
