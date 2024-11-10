@@ -11,4 +11,6 @@ Route::prefix('admin')->group(function () {
 
 Route::middleware(['auth:administrator'])->group(function () {
     Route::post("/profil", [ProfilController::class, 'store']);
+    Route::delete("/profil/{id}", [ProfilController::class, 'destroy']);
+
 });
