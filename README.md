@@ -1,4 +1,4 @@
-# Nom du projet - Backend
+# test_technique_laravel - Backend
 
 Suivez les étapes suivantes pour lancer le projet Backend de l'application.
 
