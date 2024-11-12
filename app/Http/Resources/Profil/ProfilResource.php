@@ -26,7 +26,7 @@ class ProfilResource extends JsonResource
 
         if($isAuth){
             // On n'affiche le status que si on est authentifié
-            $data['status'] = $this->status;
+            $data['status'] = $this->status == "en_attente" ? "en attente": $this->status ;
         }
 
         return $data;
