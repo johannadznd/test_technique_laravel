@@ -23,9 +23,15 @@ class ProfilController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        try {
+            return $this->profilService->getAllProfil($request);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Un problème est survenu lors de la récupération des profils',
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
@@ -59,7 +65,15 @@ class ProfilController extends Controller
      */
     public function show(string $id)
     {
-        //
+
+        try {
+            $profil = $this->profilService->getById($id);
+            return $profil;
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Un problème est survenu lors de la récupération du profil',
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
@@ -84,7 +98,7 @@ class ProfilController extends Controller
             // Gérer l'image si elle est présente dans la requête
             if ($request->hasFile('image')) {
                 $imageName = $this->profilService->storeImage($request->file('image'));
-                $profil->image = $imageName; 
+                $profil->image = $imageName;
             }
 
             $this->profilService->updateProfil($profilDTO, $profil);

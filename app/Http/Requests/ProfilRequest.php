@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Dto\profilDto;
+use App\DTO\ProfilDto;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProfilRequest extends FormRequest
@@ -62,13 +62,13 @@ class ProfilRequest extends FormRequest
         ];
     }
 
-    public function toDTO(): profilDto
+    public function toDTO(): ProfilDto
     {
         // Validation des données
         $validatedData = $this->validated();
 
         // Retourner un DTO avec les données validées
-        return new profilDto(
+        return new ProfilDto(
             lastName: $validatedData['lastName'],
             firstName: $validatedData['firstName'],
             image: $validatedData['image'] ?? null,

@@ -1,9 +1,9 @@
 <?php
 
 
-namespace App\Dto;
+namespace App\DTO;
 
-class profilDto
+class ProfilDto
 {
     public function __construct(
         public string $lastName,
