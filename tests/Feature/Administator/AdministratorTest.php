@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Models\Administrator;
+use App\Models\Administrator\Administrator;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;

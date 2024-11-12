@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Profil;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProfilRequest;
-use App\Models\Profil;
-use App\Services\ProfilService;
+use App\Http\Requests\Profil\ProfilRequest;
+use App\Models\Profil\Profil;
+use App\Services\Profil\ProfilService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

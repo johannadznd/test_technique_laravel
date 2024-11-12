@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Profil;
 
-use App\DTO\ProfilDto;
+use App\DTO\Profil\ProfilDto;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProfilRequest extends FormRequest

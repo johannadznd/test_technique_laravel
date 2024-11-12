@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Services\ProfilService;
+use App\Services\Profil\ProfilService;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Http\UploadedFile;
 use RuntimeException;

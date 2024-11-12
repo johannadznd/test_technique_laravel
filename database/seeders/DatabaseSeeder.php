@@ -1,8 +1,7 @@
 <?php
 
-namespace Database\Seeders;
-
-use App\Models\User;
+use Database\Seeders\Administrator\AdministratorSeeder;
+use Database\Seeders\Profil\ProfilSeeder;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,7 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        //$this->call(AdministratorSeeder::class);
+        $this->call(AdministratorSeeder::class);
         $this->call(ProfilSeeder::class);
     }
 }

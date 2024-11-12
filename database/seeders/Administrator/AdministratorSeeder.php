@@ -1,8 +1,8 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Administrator;
 
-use App\Models\Administrator;
+use App\Models\Administrator\Administrator;
 use Illuminate\Database\Seeder;
 
 class AdministratorSeeder extends Seeder

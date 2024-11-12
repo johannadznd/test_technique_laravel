@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Profil;
 
-use App\DTO\ProfilDto;
-use App\Http\Resources\ProfilResource;
-use App\Models\Profil;
+use App\DTO\Profil\ProfilDto;
+use App\Http\Resources\Profil\ProfilResource;
+use App\Models\Profil\Profil;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;

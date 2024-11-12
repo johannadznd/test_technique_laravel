@@ -1,9 +1,8 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Profil;
 
-use App\Models\Profil;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Profil\Profil;
 use Illuminate\Database\Seeder;
 
 class ProfilSeeder extends Seeder

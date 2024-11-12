@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Models\Administrator;
-use App\Models\Profil;
+use App\Models\Administrator\Administrator;
+use App\Models\Profil\Profil;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
 use Tests\TestCase;

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Administrator;
 
-use App\Models\Administrator;
+use App\Models\Administrator\Administrator;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\Facades\Hash;
 
