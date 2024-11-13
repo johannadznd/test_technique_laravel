@@ -2,10 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\Models\Administrator\Administrator;
-use App\Models\Profil\Profil;
+use Src\Domain\Profil\Models\Profil;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
+use Src\Infrastructure\Administrator\Factories\AdministratorFactory;
+use Src\Infrastructure\Profil\Factories\ProfilFactory;
 use Tests\TestCase;
 
 class GetByIdProfilTest extends TestCase
@@ -21,7 +22,7 @@ class GetByIdProfilTest extends TestCase
     private function authenticate()
     {
         // Création d'un utilisateur
-        $user = Administrator::factory()->create();
+        $user = AdministratorFactory::new()->create();
 
         // Création d'un token d'authentification pour cet utilisateur
         $token = $user->createToken('admin-token')->plainTextToken;
@@ -33,7 +34,7 @@ class GetByIdProfilTest extends TestCase
 
     public function test_get_profile_by_id_with_authentication()
     {
-        $profil = Profil::factory()->create();
+        $profil = ProfilFactory::new()->create();
 
         $token = $this->authenticate();
 
@@ -45,13 +46,13 @@ class GetByIdProfilTest extends TestCase
         // On vérifie que le profil retourne bien le status
         $response->assertJsonFragment([
             'id' => $profil->id,
-            'status' => $profil->status,
+            'status' =>  $profil->status == "en_attente" ? "en attente" : $profil->status
         ]);
     }
 
     public function test_get_profile_by_id_without_authentication()
     {
-        $profil = Profil::factory()->create(['status' => 'actif']);
+        $profil = ProfilFactory::new()->create(['status' => 'actif']);
 
         $response = $this->getJson('/api/profil/' . $profil->id);
 

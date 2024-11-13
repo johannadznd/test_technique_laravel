@@ -1,14 +1,16 @@
 <?php
 
-namespace Database\Factories\Profil;
+namespace Src\Infrastructure\Profil\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Src\Domain\Profil\Models\Profil;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Profil>
- */
 class ProfilFactory extends Factory
 {
+
+
+    protected $model = Profil::class;
+
     /**
      * Define the model's default state.
      *

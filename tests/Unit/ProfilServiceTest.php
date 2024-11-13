@@ -2,10 +2,11 @@
 
 namespace Tests\Unit;
 
-use App\Services\Profil\ProfilService;
+use Src\Infrastructure\Profil\Services\ProfilService;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Http\UploadedFile;
 use RuntimeException;
+use Src\Domain\Profil\Repositories\ProfilRepositoryInterface;
 use Tests\TestCase;
 
 class ProfilServiceTest extends TestCase
@@ -13,13 +14,20 @@ class ProfilServiceTest extends TestCase
 
     protected $profilService;
     protected $filesystem;
+    protected $profilRepository;
 
     protected function setUp(): void
     {
         parent::setUp();
 
+        // Mock du repository
+        $this->profilRepository = $this->createMock(ProfilRepositoryInterface::class);
+
+        // Mock du filesystem
         $this->filesystem = $this->createMock(Filesystem::class);
-        $this->profilService = new ProfilService($this->filesystem);
+
+        // Instanciation du service avec le repository mocké et le filesystem m<ocké
+        $this->profilService = new ProfilService($this->profilRepository, $this->filesystem);
     }
 
     /** @test */
@@ -57,5 +65,4 @@ class ProfilServiceTest extends TestCase
 
         $this->profilService->storeImage($file);
     }
-
 }

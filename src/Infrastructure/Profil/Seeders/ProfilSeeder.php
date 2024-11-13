@@ -1,9 +1,9 @@
 <?php
 
-namespace Database\Seeders\Profil;
+namespace Src\Infrastructure\Profil\Seeders;
 
-use App\Models\Profil\Profil;
 use Illuminate\Database\Seeder;
+use Src\Infrastructure\Profil\Factories\ProfilFactory;
 
 class ProfilSeeder extends Seeder
 {
@@ -12,6 +12,7 @@ class ProfilSeeder extends Seeder
      */
     public function run(): void
     {
-        Profil::factory()->count(20)->create();
+        ProfilFactory::new()->count(20)->create();
+
     }
 }

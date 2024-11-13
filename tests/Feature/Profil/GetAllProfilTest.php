@@ -2,10 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\Models\Administrator\Administrator;
-use App\Models\Profil\Profil;
+use Src\Domain\Profil\Models\Profil;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
+use Src\Infrastructure\Administrator\Factories\AdministratorFactory;
+use Src\Infrastructure\Profil\Factories\ProfilFactory;
 use Tests\TestCase;
 
 class GetAllProfilTest extends TestCase
@@ -17,9 +18,9 @@ class GetAllProfilTest extends TestCase
         parent::setUp();
 
         // Création de profils avec différents statuts
-        Profil::factory()->count(3)->create(['status' => 'actif']);
-        Profil::factory()->count(5)->create(['status' => 'inactif']);
-        Profil::factory()->count(5)->create(['status' => 'en_attente']);
+        ProfilFactory::new()->count(3)->create(['status' => 'actif']);
+        ProfilFactory::new()->count(5)->create(['status' => 'inactif']);
+        ProfilFactory::new()->count(5)->create(['status' => 'en_attente']);
     }
 
     /**
@@ -30,7 +31,7 @@ class GetAllProfilTest extends TestCase
     private function authenticate()
     {
         // Création d'un utilisateur
-        $user = Administrator::factory()->create();
+        $user = AdministratorFactory::new()->create();
 
         // Création d'un token d'authentification pour cet utilisateur
         $token = $user->createToken('admin-token')->plainTextToken;
@@ -71,7 +72,7 @@ class GetAllProfilTest extends TestCase
     public function test_can_filter_profils_by_last_name()
     {
         // Profil avec un nom spécifique pour le test de filtre
-        Profil::factory()->create(['lastName' => 'TestLastName', 'status' => 'actif']);
+        ProfilFactory::new()->create(['lastName' => 'TestLastName', 'status' => 'actif']);
 
         $response = $this->getJson('/api/profil?lastName=TestLastName');
 

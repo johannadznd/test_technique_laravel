@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\Models\Administrator\Administrator;
-use App\Models\Profil\Profil;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
+use Src\Infrastructure\Administrator\Factories\AdministratorFactory;
+use Src\Infrastructure\Profil\Factories\ProfilFactory;
 use Tests\TestCase;
 
 class UpdateProfilTest extends TestCase
@@ -21,7 +21,7 @@ class UpdateProfilTest extends TestCase
     private function authenticate()
     {
         // Création d'un utilisateur
-        $user = Administrator::factory()->create();
+        $user = AdministratorFactory::new()->create();
 
         // Création d'un token d'authentification pour cet utilisateur
         $token = $user->createToken('admin-token')->plainTextToken;
@@ -43,7 +43,7 @@ class UpdateProfilTest extends TestCase
         $token = $this->authenticate();
 
         // On crée un profil fictif pour tester la mise à jour
-        $profil = Profil::factory()->create();
+        $profil = ProfilFactory::new()->create();
 
         // On prépare les données pour la mise à jour
         $data = [

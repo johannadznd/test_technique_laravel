@@ -2,10 +2,12 @@
 
 namespace Tests\Feature;
 
-use App\Models\Administrator\Administrator;
-use App\Models\Profil\Profil;
+use Src\Domain\Administrator\Models\Administrator;
+use Src\Domain\Profil\Models\Profil;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
+use Src\Infrastructure\Administrator\Factories\AdministratorFactory;
+use Src\Infrastructure\Profil\Factories\ProfilFactory;
 use Tests\TestCase;
 
 class DeleteProfilTest extends TestCase
@@ -21,7 +23,7 @@ class DeleteProfilTest extends TestCase
     private function authenticate()
     {
         // Création d'un utilisateur
-        $user = Administrator::factory()->create();
+        $user = AdministratorFactory::new()->create();
 
         // Création d'un token d'authentification pour cet utilisateur
         $token = $user->createToken('admin-token')->plainTextToken;
@@ -43,7 +45,7 @@ class DeleteProfilTest extends TestCase
         $token = $this->authenticate();
 
         // On crée un profil fictif pour tester la suppression
-        $profil = Profil::factory()->create();
+        $profil = ProfilFactory::new()->create();
 
         // On appelle la méthode de suppression
         // On tente de supprimer un profil inexistant

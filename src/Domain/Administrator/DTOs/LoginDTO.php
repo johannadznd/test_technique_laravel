@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DTO\Administrator;
+namespace Src\Domain\Administrator\DTOs;
 
 class LoginDTO
 {

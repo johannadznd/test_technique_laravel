@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Administrator;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Administrator\LoginRequest;
-use App\Services\Administrator\AdministratorAuthService;
+use Src\Domain\Administrator\Services\AdministratorAuthService;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Response;
 

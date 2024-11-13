@@ -2,10 +2,11 @@
 
 namespace Tests\Unit;
 
-use App\Models\Administrator\Administrator;
+use Src\Domain\Administrator\Models\Administrator;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
+use Src\Infrastructure\Administrator\Factories\AdministratorFactory;
 use Tests\TestCase;
 
 class AdministratorTest extends TestCase
@@ -15,7 +16,8 @@ class AdministratorTest extends TestCase
     public function test_administrator_can_login_with_valid_credentials()
     {
         // Création d'un administrateur pour tester
-        $admin = Administrator::factory()->create([
+
+        $admin = AdministratorFactory::new()->create([
             'email' => 'admin@example.com',
             'password' => Hash::make('password'),
         ]);
@@ -33,7 +35,7 @@ class AdministratorTest extends TestCase
 
     public function test_administrator_cannot_login_with_invalid_password()
     {
-        $admin = Administrator::factory()->create([
+        $admin = AdministratorFactory::new()->create([
             'email' => 'admin@example.com',
             'password' => Hash::make('password'),
         ]);

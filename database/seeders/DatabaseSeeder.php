@@ -1,8 +1,7 @@
 <?php
 
-use Database\Seeders\Administrator\AdministratorSeeder;
-use Database\Seeders\Profil\ProfilSeeder;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Src\Infrastructure\Administrator\Seeders\AdministratorSeeder;
+use Src\Infrastructure\Profil\Seeders\ProfilSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,8 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         $this->call(AdministratorSeeder::class);
         $this->call(ProfilSeeder::class);
     }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Administrator;
 
-use App\DTO\Administrator\LoginDTO;
 use Illuminate\Foundation\Http\FormRequest;
+use Src\Domain\Administrator\Dtos\LoginDTO;
 
 class LoginRequest extends FormRequest
 {

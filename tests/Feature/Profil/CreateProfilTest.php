@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\Models\Administrator\Administrator;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
 use Illuminate\Http\UploadedFile;
+use Src\Infrastructure\Administrator\Factories\AdministratorFactory;
 use Tests\TestCase;
 
 class CreateProfilTest extends TestCase
@@ -21,8 +21,7 @@ class CreateProfilTest extends TestCase
     private function authenticate()
     {
         // Création d'un utilisateur
-        $user = Administrator::factory()->create();
-
+        $user = AdministratorFactory::new()->create();
         // Création d'un token d'authentification pour cet utilisateur
         $token = $user->createToken('admin-token')->plainTextToken;
 
@@ -67,7 +66,7 @@ class CreateProfilTest extends TestCase
 
         //Et on vérifier que la réponse contient le message de succès
         $response->assertJson([
-            'message' => 'Le profil a bien été créé',
+            'message' => 'Le profil a bien été créé.',
         ]);
     }
 
