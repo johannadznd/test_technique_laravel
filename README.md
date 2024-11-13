@@ -8,18 +8,18 @@ Cloner le projet :
 
 ```bash
 #SSH
-git@github.com:ton-utilisateur/ton-projet-back.git
+git@github.com:johannadznd/test_technique_laravel.git
 ```
 ou
 ```bash
 #HTTP
-https://github.com/ton-utilisateur/ton-projet-back.git
+https://github.com/johannadznd/test_technique_laravel.git
 ```
 
 Accédez au dossier du projet :
 
 ```bash
-cd ton-projet-back
+cd test_technique_laravel
 ```
 
 ## Installation des dépendances
